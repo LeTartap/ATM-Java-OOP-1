@@ -3,13 +3,13 @@ package atm;
 public class Factory {
 	Account createAccount(String type) {
 		
-		if(type.equals("Debit") )
+		if(type.equals("debit") )
 		{
 			return new Debit();
 		}
-		else if(type.equals("Credit")) 
+		else if(type.equals("credit")) 
 		{
-			return new Credit(1000f);
+			return new Credit(-1000f);
 		}
 		else {
 			return null;

@@ -21,8 +21,8 @@ public class User {
 		int i =0;
 		for(Account acc : acclist)
 		{
-			i++;
 			System.out.println(acc.getType()+" la indexul "+ i);
+			i++;
 		}
 	}
 	boolean withdrawFromAccount(int i, float sum)
@@ -39,7 +39,7 @@ public class User {
 	
 	boolean depositInAccount(int i, float sum) 
 	{
-		System.out.println(i);
+		//System.out.println(i);
 		if(acclist.get(i).getType().equals("Debit"))
 		{
 			((Debit)acclist.get(i)).deposit(sum);

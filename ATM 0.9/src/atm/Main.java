@@ -10,7 +10,7 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		User testUser = new User("Dave", "0000");
+		// User testUser = new User("Dave", "0000");
 
 		Factory atmWorks = new Factory();
 		Scanner scan = new Scanner(System.in);
@@ -34,7 +34,7 @@ public class Main {
 					System.out.println("Reintrodu PIN-ul: ");
 					String pin2 = scan.nextLine();
 					if (pin.equals(pin2)) {
-						User newUser = new User(nume, pin);
+						// User newUser = new User(nume, pin);
 						myAtm.addUser(nume, pin);
 						break;
 					} else {
@@ -62,40 +62,71 @@ public class Main {
 				while (true) {
 					String input[] = scan.nextLine().split(" ");
 
-					switch (input[0]) {
+					switch (input[0].toLowerCase()) {
 					case "interogare":
 						int indexInterogare = Integer.parseInt(input[1]);
 						System.out.println(user.getBalanceFromAccount(indexInterogare));
 						break;
 					case "nou":
-						System.out.println("Ce tip de cont. Debit sau Credit ");
-						String type = scan.nextLine();
-						atmWorks.createAccount(type);
-						user.associateAccount(atmWorks.createAccount(type));
-						System.out.println("Cont de tipul " + type + " adaugat cu succes!");
+						while (true) {
+							System.out.println("Ce tip de cont. Debit sau Credit ");
+							String type = scan.nextLine();
+							if (type.equals("Debit") || type.equals("debit")) {
+								atmWorks.createAccount(type);
+								user.associateAccount(atmWorks.createAccount("debit"));
+								System.out.println("Cont de tipul " + type + " adaugat cu succes!");
+								break;
+							}
+							if (type.equals("Credit") || type.equals("credit")) {
+								atmWorks.createAccount(type);
+								user.associateAccount(atmWorks.createAccount("credit"));
+								System.out.println("Cont de tipul " + type + " adaugat cu succes!");
+								break;
+							} else {
+								System.out.println("Tip de cont nou invalid");
+								continue;
+							}
+						}
 
 					case "afisare":
 						user.printAccounts();
 						break;
 					case "depunere":
-						float sumDep = Float.parseFloat(input[2]);
-						int indexdep = Integer.parseInt(input[1]);
-						if (user.depositInAccount(indexdep, sumDep) == true) {
-							user.depositInAccount(indexdep, sumDep);
-						} else {
-							System.out.println("Nu se pot depune bani intr-un cont de credit!");
+						float sumDep = 0;
+						int indexdep = 0;
+						try {
+							sumDep = Float.parseFloat(input[2]);
+						} catch (Exception e) {
+							System.out.println("Format gresit ! Formatul asteptat este: Depunere <index_cont> <suma>");
+							break;
 						}
-
-						break;
+						try {
+							indexdep = Integer.parseInt(input[1]);
+							if (!user.depositInAccount(indexdep, sumDep)) {
+								System.out.println("Nu se pot depune bani intr-un cont de credit!");
+							} else {
+								System.out.println("Au fost depusi cu succes " + sumDep + "$" + " in contul " + indexdep);
+							}
+							break;
+						} catch (Exception e) {
+							System.out.println("Nu exista un cont la indexul " + input[1]);
+							break;
+						}
 					case "retragere":
-						float sumRetrage = Float.parseFloat(input[2]);
-						int indexret = Integer.parseInt(input[1]);
-						user.withdrawFromAccount(indexret, sumRetrage);
-						break;
-					case "back":
-						break;
+						while (true) {
+							float sumRetrage = Float.parseFloat(input[2]);
+							int indexret = Integer.parseInt(input[1]);
+							if (!user.withdrawFromAccount(indexret, sumRetrage)) {
+								System.out.println("SOLD INSUFICIENT! ");
+								break;
+							} else {
+								System.out.println("S-au retras " + sumRetrage + "$ din contul " + indexret);
+								break;
+							}
+						}
 					case "quit":
 						System.out.println("Bancomat inchis! ");
+						scan.close();
 						System.exit(0);
 						break;
 					default:
