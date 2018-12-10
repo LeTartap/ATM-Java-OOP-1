@@ -2,6 +2,10 @@ package atm;
 
 public class Debit extends Account{
 
+	Debit(Integer id)
+	{
+		super(id);
+	}
 	
 	boolean withdraw(float sum) {
 		

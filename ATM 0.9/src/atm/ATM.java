@@ -6,7 +6,7 @@ public class ATM {
 	
 	Map<String, User> map = new HashMap();
 	
-	Factory atmWorks = new Factory();
+	AccountFactory atmWorks = new AccountFactory();
 	
 	void addUser(String name,String pin){
 		map.put(name, new User(name,pin));
@@ -17,7 +17,7 @@ public class ATM {
 	}
 	void addAccountToUser(String nume, String type)
 	{
-		map.get(nume).associateAccount(atmWorks.createAccount(type));
+		map.get(nume).associateAccount(atmWorks.createResource(type));
 	}
 	
 }

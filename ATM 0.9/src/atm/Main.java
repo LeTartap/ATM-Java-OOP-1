@@ -12,7 +12,7 @@ public class Main {
 
 		// User testUser = new User("Dave", "0000");
 
-		Factory atmWorks = new Factory();
+		AccountFactory atmWorks = new AccountFactory();
 		Scanner scan = new Scanner(System.in);
 		ATM myAtm = new ATM();
 
@@ -72,14 +72,14 @@ public class Main {
 							System.out.println("Ce tip de cont. Debit sau Credit ");
 							String type = scan.nextLine();
 							if (type.equals("Debit") || type.equals("debit")) {
-								atmWorks.createAccount(type);
-								user.associateAccount(atmWorks.createAccount("debit"));
+								atmWorks.createResource(type);
+								user.associateAccount(atmWorks.createResource("debit"));
 								System.out.println("Cont de tipul " + type + " adaugat cu succes!");
 								break;
 							}
 							if (type.equals("Credit") || type.equals("credit")) {
-								atmWorks.createAccount(type);
-								user.associateAccount(atmWorks.createAccount("credit"));
+								atmWorks.createResource(type);
+								user.associateAccount(atmWorks.createResource("credit"));
 								System.out.println("Cont de tipul " + type + " adaugat cu succes!");
 								break;
 							} else {

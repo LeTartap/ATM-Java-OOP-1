@@ -4,8 +4,10 @@ public class Credit extends Account {
 	
 	float limit;
 	
-	Credit(float limit) {
+	Credit(float limit, Integer id) {
+		super(id);
 		this.limit =limit;
+		
 	}
 	
 	boolean withdraw(float sum) {
