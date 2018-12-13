@@ -8,11 +8,16 @@ public class Main {
 //		return false;
 //	}
 
+
+	
 	public static void main(String[] args) {
 
-		// User testUser = new User("Dave", "0000");
+		//User testUser = new User("David", "0000");
 
-		AccountFactory atmWorks = new AccountFactory();
+	     AccountFactory atmWorks = AccountFactory.getInstance();
+
+		
+		
 		Scanner scan = new Scanner(System.in);
 		ATM myAtm = new ATM();
 
@@ -20,6 +25,7 @@ public class Main {
 
 		String nume = "Nume";
 		String pin = "0000";
+		myAtm.addUser("david", "0000");
 		while (true) {
 			System.out.println("Scrieti <register> daca sunteti un utilizator nou sau <login> daca aveti deja cont ");
 			String nou_sau_existent = scan.nextLine();
@@ -34,7 +40,6 @@ public class Main {
 					System.out.println("Reintrodu PIN-ul: ");
 					String pin2 = scan.nextLine();
 					if (pin.equals(pin2)) {
-						// User newUser = new User(nume, pin);
 						myAtm.addUser(nume, pin);
 						break;
 					} else {
@@ -97,7 +102,7 @@ public class Main {
 						try {
 							sumDep = Float.parseFloat(input[2]);
 						} catch (Exception e) {
-							System.out.println("Format gresit ! Formatul asteptat este: Depunere <index_cont> <suma>");
+							System.out.println("Format gresit ! Formatul asteptat este: Depunere <index_cont> <suma>" + e.getMessage());
 							break;
 						}
 						try {
@@ -124,6 +129,7 @@ public class Main {
 								break;
 							}
 						}
+						break;
 					case "quit":
 						System.out.println("Bancomat inchis! ");
 						scan.close();

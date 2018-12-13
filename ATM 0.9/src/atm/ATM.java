@@ -6,7 +6,7 @@ public class ATM {
 	
 	Map<String, User> map = new HashMap();
 	
-	AccountFactory atmWorks = new AccountFactory();
+    AccountFactory atmWorks = AccountFactory.getInstance();
 	
 	void addUser(String name,String pin){
 		map.put(name, new User(name,pin));
