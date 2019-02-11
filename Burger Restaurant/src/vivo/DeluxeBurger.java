@@ -4,8 +4,7 @@ public class DeluxeBurger extends Hamburger{
 	public DeluxeBurger(String name,double price) {
 		super(name, price, "deluxeBread", "deluxeMeat");
 		super.setCustomIngredient1("beverage", 0.0);
-		super.setCustomIngredient2("beverage", 0.0);
-
+		super.setCustomIngredient2("fries", 0.0);
 	}
 	
 	
@@ -28,6 +27,8 @@ public class DeluxeBurger extends Hamburger{
 	@Override
 	void printInfo() {
 		super.printInfo();
+		System.out.println("TOTAL Ingrediente Deluxe: "+super.getPriceTotal()+" RON");
+		
 	}
 	
 }

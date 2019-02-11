@@ -6,6 +6,7 @@ public class HealthyBurger extends Hamburger {
 	private double customIngredient5price;
 	private String customIngredient6;
 	private double customIngredient6price;
+	private double healthyBurgerPrice;
 
 	public String getCustomIngredient5() {
 		return customIngredient5;
@@ -33,9 +34,11 @@ public class HealthyBurger extends Hamburger {
 	void printInfo() {
 		// TODO Auto-generated method stub
 		super.printInfo();
-		System.out.println("Adauga " + customIngredient5 + " la pretul de " + customIngredient5price);
-		System.out.println("Adauga " + customIngredient6 + " la pretul de " + customIngredient6price);
-		System.out.println(super.getPriceTotal()+customIngredient5price+customIngredient6price);
+		if(this.customIngredient5 != null)
+		System.out.println("Adauga " + customIngredient5 + " la pretul de " + customIngredient5price+" RON");
+		if(this.customIngredient6 != null)
+		System.out.println("Adauga " + customIngredient6 + " la pretul de " + customIngredient6price+" RON");
+		System.out.println("TOTAL Ingrediente Healthy: "+(super.getPriceTotal()+ customIngredient5price + customIngredient6price)+" RON");
 
 	}
 
