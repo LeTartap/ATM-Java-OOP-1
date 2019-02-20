@@ -55,7 +55,7 @@ public class Bank {
 		}
 	}
 	
-	private void printCustomerList(Branch br) {
+	private void printCustomerList(Branch br){
 		for (Customer cust : br.customerList) {
 			System.out.println("Clientul: " + cust.getName() + " cu tranzactiile: ");
 			for (int i = 0; i < cust.transactionList.size(); i++) {
